@@ -1,7 +1,12 @@
 package com.angularjfx.core;
 
+import com.ea.agentloader.AgentLoader;
+
 public class AngularApplication {
     public static void run(Class<?> app, String... args) {
+
+        AgentLoader.loadAgentClass(EnhancerAgent.class.getName(), "");
+
         if (app == null) {
             throw new IllegalArgumentException("Null reference to the AppModule");
         }
@@ -20,8 +25,6 @@ public class AngularApplication {
         if (!bootstrap.isAnnotationPresent(Component.class)) {
             throw new NotAComponentException(bootstrap.getSimpleName() + " is not a component");
         }
-
-
         JavaFxAppLauncher.run(app, args);
     }
 }

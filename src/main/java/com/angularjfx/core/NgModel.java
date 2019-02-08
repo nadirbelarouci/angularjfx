@@ -6,7 +6,7 @@ import java.lang.annotation.*;
 @Target({ElementType.FIELD})
 @Repeatable(NgModels.class)
 public @interface NgModel {
-    String bindFrom();
+    String bindFrom() default "";
 
     String[] bindTo();
 

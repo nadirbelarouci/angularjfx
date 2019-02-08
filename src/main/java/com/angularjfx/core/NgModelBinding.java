@@ -1,7 +1,6 @@
 package com.angularjfx.core;
 
 import javafx.beans.binding.Bindings;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Control;
@@ -17,20 +16,20 @@ import java.util.stream.Stream;
 public class NgModelBinding {
     private Field field;
     private Object instance;
-    private StringProperty property = new SimpleStringProperty();
-    ;
     private List<Control> nodes = new ArrayList<>();
     private boolean bindBidirectional;
 
     public NgModelBinding(Object instance, NgModel ngModel, FXMLLoader loader) {
+        System.out.println("starting");
         try {
             findField(instance, ngModel.bindFrom());
         } catch (NoSuchFieldException e) {
+            e.printStackTrace();
             throw new RuntimeException(e);
         }
         bindBidirectional = ngModel.bindBidirectional();
         bind(ngModel.bindTo(), loader);
-        System.out.println(nodes);
+        System.out.println("done");
     }
 
 
@@ -42,8 +41,7 @@ public class NgModelBinding {
                 bindings.add(new NgModelBinding(instance, ngModel, loader));
             }
         }
-
-        System.out.println(bindings.size());
+        System.out.println();
         return bindings;
     }
 
@@ -64,6 +62,7 @@ public class NgModelBinding {
 
         this.instance = instance;
         this.field = field;
+        System.out.println(field.getClass());
     }
 
     private Pair<Object, Field> getNext(Object instance, Field field, String name) {
@@ -94,7 +93,7 @@ public class NgModelBinding {
         throw new RuntimeException("No such field: " + id);
     }
 
-    private void bind(Control control) {
+    private void bind(Control control)  {
         if (control instanceof TextInputControl) {
             TextInputControl node = (TextInputControl) control;
             bind(node.textProperty());
@@ -109,46 +108,19 @@ public class NgModelBinding {
     }
 
     private void bind(StringProperty stringProperty) {
-        addListener();
-        if (bindBidirectional) {
-            Bindings.bindBidirectional(stringProperty, property);
-        } else {
-            stringProperty.bind(property);
-        }
-    }
 
-    private void addListener() {
         try {
-
-
-            property.set((String) getValue());
-            property.addListener((observable, oldValue, newValue) -> setValue(newValue));
-
-        } catch (ClassCastException e) {
-            throw new RuntimeException(field.getName() + " is not a String", e);
-        }
-    }
-
-    private Object getValue() {
-        try {
-
-            this.field.setAccessible(true);
-
-            return field.get(instance);
+            field.setAccessible(true);
+            StringProperty s = (StringProperty) field.get(instance);
+            if (bindBidirectional) {
+                Bindings.bindBidirectional(stringProperty, s);
+            } else {
+                stringProperty.bind(s);
+            }
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
         }
     }
 
-    private void setValue(String newValue) {
-
-        try {
-            System.out.println(newValue);
-            this.field.setAccessible(true);
-            field.set(instance, newValue);
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
 }

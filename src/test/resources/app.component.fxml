@@ -12,6 +12,7 @@
     </padding>
     <Label fx:id="title"/>
     <TextField fx:id="text"/>
+    <Label text="${text.text}"/>
     <Button onAction="#changeValue" text="Click Me"/>
     <!-- content from counter.fxml included here -->
     <fx:include fx:id="heros" source="heros/heroes.component.fxml"/>
