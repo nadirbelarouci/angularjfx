@@ -25,4 +25,5 @@ public class NgModelTransformerTest {
         AppComponent appComponent = new AppComponent();
         appComponent.changeValue();
     }
+
 }

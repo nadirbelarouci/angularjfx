@@ -11,11 +11,4 @@ public @interface NgModule {
     Class<?>[] declarations() default {};
 
     Class<?> bootstrap();
-
-    int width() default 300;
-
-    int height() default 250;
-
-    String title() default "AngularFx Application";
-
 }

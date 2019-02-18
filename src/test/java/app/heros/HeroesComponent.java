@@ -11,6 +11,8 @@ public class HeroesComponent extends OnInit {
     @NgModel(bindFrom = "hero.name", bindTo = {"name", "details"})
     private Hero hero;
 
+    private String title;
+
     public void initialize() {
         hero = new Hero(5, "Nadir");
     }
