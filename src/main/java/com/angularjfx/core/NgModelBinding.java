@@ -1,5 +1,6 @@
 package com.angularjfx.core;
 
+import com.angularjfx.core.annotations.NgModel;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXMLLoader;

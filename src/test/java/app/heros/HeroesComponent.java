@@ -1,7 +1,7 @@
 package app.heros;
 
-import com.angularjfx.core.Component;
-import com.angularjfx.core.NgModel;
+import com.angularjfx.core.annotations.Component;
+import com.angularjfx.core.annotations.NgModel;
 import com.angularjfx.core.OnInit;
 import app.Hero;
 
@@ -12,6 +12,7 @@ public class HeroesComponent extends OnInit {
     private Hero hero;
 
     public void initialize() {
+
         hero = new Hero(5, "Nadir");
     }
 }

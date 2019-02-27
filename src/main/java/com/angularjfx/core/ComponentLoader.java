@@ -1,10 +1,10 @@
 package com.angularjfx.core;
 
+import com.angularjfx.core.annotations.Component;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,7 +1,8 @@
 package app;
 
-import com.angularjfx.core.Component;
-import com.angularjfx.core.NgModel;
+import app.heros.HeroesComponent;
+import com.angularjfx.core.annotations.Component;
+import com.angularjfx.core.annotations.NgModel;
 import javafx.fxml.FXML;
 
 
@@ -13,9 +14,12 @@ public class AppComponent {
 
 
     @FXML
+    private HeroesComponent herosController;
+
+    @FXML
     public void changeValue() {
         title = "Something else";
-        System.out.println(title);
+
     }
 
 

@@ -1,4 +1,4 @@
-package com.angularjfx.core;
+package com.angularjfx.core.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

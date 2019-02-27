@@ -2,9 +2,7 @@ package app;
 
 import app.heros.HeroesComponent;
 import com.angularjfx.core.AngularApplication;
-import com.angularjfx.core.EnhancerAgent;
-import com.angularjfx.core.NgModule;
-import com.ea.agentloader.AgentLoader;
+import com.angularjfx.core.annotations.NgModule;
 
 @NgModule(declarations = {
         HeroesComponent.class
