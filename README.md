@@ -67,7 +67,7 @@ public class AppComponent {
 
 }
 ```
-
+HeroesComponent
 ```java
 package app.heros;
 
